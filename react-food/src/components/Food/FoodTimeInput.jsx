@@ -1,6 +1,6 @@
 
 import { useState } from "react"
-
+import Button from "@mui/material/Button"
 
 
 
@@ -21,7 +21,7 @@ const FoodTimeInput = (props) => {
       <p>Hours: {hour}</p>
       <input type="range" min={0} max={60} onChange={e => setMinute(e.target.value)} value={minute} ></input>
       <p>Minutes: {minute}</p>
-      <button onClick={handleAddTime}>Add time</button>
+      <Button variant="outlined" onClick={handleAddTime}>Add time</Button>
     </>
   )
 }

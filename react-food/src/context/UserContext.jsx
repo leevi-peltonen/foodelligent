@@ -13,16 +13,16 @@ const DUMMY_USER = {
     {
       name: "pizza with pineapple",
       instructions: ["step1", "step2", "step3"],
-      ingridients: ['flour', 'cheese', 'sauce', 'pineapple', 'some meat'],
-      time: [0, 20],
-      grade: 10,
+      ingridients: ['pizzabase', 'tomato', 'cheese'],
+      time: 20,
+      grade: 5,
     },
     {
       name: "pasta carbonara",
       instructions: ["do this", "do that", "finito"],
-      ingridients: ['pasta', 'bacon', 'eggs'],
-      time: [0, 15],
-      grade: 6,
+      ingridients: ['potatoes', 'pasta', 'stuff'],
+      time: 15,
+      grade: 2,
     }
   ]
 }

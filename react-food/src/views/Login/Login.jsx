@@ -2,7 +2,7 @@ import { useUser } from "../../context/UserContext"
 import LoginForm from "../../components/Login/LoginForm"
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from "react"
-
+import Container from "@mui/material/Container"
 
 
 
@@ -19,9 +19,9 @@ const Login = () => {
 
 
   return (
-    <>
+    <Container maxWidth="sm">
       <LoginForm />
-    </>
+    </Container>
   )
 }
 

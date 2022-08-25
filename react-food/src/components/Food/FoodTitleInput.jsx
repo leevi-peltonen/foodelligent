@@ -1,18 +1,20 @@
-import { createRef } from "react";
+import { useState } from "react";
+import  Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 const FoodTitleInput = (props) => {
-  const input = createRef();
 
+  const [value, setValue] = useState('')
   const handleNameInput = (event) => {
     event.preventDefault();
-    props.getDataFromChild({name: input.current.value})
+    props.getDataFromChild({name: value})
   };
 
 
   return (
     <>
-      <input ref={input} type="text" placeholder="Name of the food"></input>
-      <button onClick={handleNameInput}>Add name</button>
+      <TextField value={value} onChange={e => setValue(e.target.value)} id="standard-basic" label="Name of the food" variant="standard" type="text"></TextField>
+      <Button variant="outlined" onClick={handleNameInput}>Add</Button>
     </>
   );
 };

@@ -10,9 +10,8 @@ function App() {
   return (
     <UserProvider>
       <BrowserRouter>
-      <Header />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Profile />} />
           <Route path="/food" element={<Food />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/" />} />

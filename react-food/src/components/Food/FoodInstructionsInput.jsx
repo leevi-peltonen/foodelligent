@@ -1,4 +1,5 @@
 import { createRef } from "react"
+import Button from "@mui/material/Button";
 
 const steps = [];
 const FoodInstructionsInput = (props) => {
@@ -12,7 +13,7 @@ const FoodInstructionsInput = (props) => {
 
   const handleFinishSteps = (event) => {
     event.preventDefault();
-    props.getDataFromChild({instuctions: steps})
+    props.getDataFromChild({instructions: steps})
   };
 
   return (
@@ -22,8 +23,8 @@ const FoodInstructionsInput = (props) => {
           type="text"
           placeholder="Provide a step"
         ></input>
-        <button onClick={handleAddStep}>+</button>
-        <button onClick={handleFinishSteps}>Next</button>
+        <Button size="small" variant="outlined" onClick={handleAddStep}>+</Button>
+        <Button variant="outlined" onClick={handleFinishSteps}>Next</Button>
     </>
   )
 }
