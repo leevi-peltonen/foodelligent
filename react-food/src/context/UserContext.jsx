@@ -27,8 +27,12 @@ const DUMMY_USER = {
   ]
 }
 
+
+
+
+
 const UserProvider = (props) => {
-  const [user, setUser] = useState(DUMMY_USER);
+  const [user, setUser] = useState(null);
 
   const state = {
     user,

@@ -1,15 +1,14 @@
-import { createRef, useState } from "react";
+import { useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-
+import { TextField } from "@mui/material";
 
 const LoginForm = () => {
 
-  const input = createRef();
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(values.password)
@@ -17,6 +16,7 @@ const LoginForm = () => {
 
 
   const [values, setValues] = useState({
+    username: '',
     password: '',
     showPassword: false,
   });
@@ -46,8 +46,8 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input ref={input} type="text" placeholder="Username"></input>
       <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+      <TextField type="text" value={values.username} onChange={handleChange('username')} placeholder="Username"></TextField>
       <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
       <OutlinedInput
         id="outlined-adornment-password"
