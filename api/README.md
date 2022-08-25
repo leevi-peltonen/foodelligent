@@ -1,6 +1,6 @@
 # API endpoints
 
-## List exercises
+## List all recipes
 
 ### Definition
 
