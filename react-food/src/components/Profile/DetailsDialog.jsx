@@ -9,7 +9,7 @@ import Rating from "@mui/material/Rating";
 import { useState } from "react";
 
 const DetailsDialog = (props) => {
-  const { name, time, instructions, ingridients, grade } = props.food;
+  const { title, time, instructions, ingredients } = props.food;
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -26,12 +26,12 @@ const DetailsDialog = (props) => {
     <>
       <Button variant="contained" onClick={handleOpen}>Details</Button>
       <Dialog open={isOpen}>
-        <DialogTitle>{name}</DialogTitle>
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <p>{time} minutes</p>
           <Stack>
             <p><b>Ingridients</b></p>
-            {ingridients.map(item => <p>{item}</p>)}
+            {ingredients.map(item => <p>{item}</p>)}
             <p><b>Instructions</b></p>
             {instructions.map(step => <p>{step}</p>)}
           </Stack>

@@ -1,16 +1,30 @@
 import FoodCard from "../../components/Profile/FoodCard";
-import { useUser } from "../../context/UserContext";
 import Container from "@mui/material/Container";
 import FoodDialog from "../../components/Food/FoodDialog";
+import { useEffect } from "react";
+import { useRecipe } from "../../context/RecipeContext";
+import { getAll } from "../../services/recipes";
 const Profile = () => {
-  const { user } = useUser();
+
+  const  {recipes, setRecipes} = useRecipe()
+
+
+  useEffect(() => {
+      getAll()
+        .then(returnedRecipes => {
+          setRecipes(returnedRecipes)
+        })
+        .catch(error => console.log(error))
+  }, [])
+
+
 
   return (
     <Container maxWidth="sm">
       <h1>FOODS xd</h1>
       <FoodDialog />
-      {user.foods.map((food) => {
-        return <FoodCard food={food} />;
+      {recipes && recipes.map((food, index) => {
+        return <FoodCard food={food} key={index} />;
       })}
     </Container>
   );

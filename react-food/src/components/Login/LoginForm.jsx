@@ -46,8 +46,19 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+
+        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-username">Username</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-username"
+          value={values.username}
+          onChange={handleChange("username")}
+          type="text"
+        ></OutlinedInput>
+      </FormControl>
+
+
       <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <TextField type="text" value={values.username} onChange={handleChange('username')} placeholder="Username"></TextField>
       <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
       <OutlinedInput
         id="outlined-adornment-password"

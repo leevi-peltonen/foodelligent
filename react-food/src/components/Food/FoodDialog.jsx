@@ -58,13 +58,16 @@ const FoodDialog = () => {
   };
 
   const handleSubmit = () => {
-    newFoodItem.name = name
-    newFoodItem.grade = rating
+    newFoodItem.title = name
+    newFoodItem.rating = rating
     newFoodItem.time = time
-    newFoodItem.instructions = instructionStepArray
-    newFoodItem.ingridients = ingridientArray
+    newFoodItem.steps = instructionStepArray
+    newFoodItem.ingredients = ingridientArray
+    
 
-    setUser({...user, foods: [...user.foods, newFoodItem]})
+    
+
+
     setOpen(false)
     setDefaultStates()
     }

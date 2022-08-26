@@ -1,9 +1,7 @@
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
+
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import { useState } from "react";
+
 import DetailsDialog from "./DetailsDialog";
 
 
@@ -12,20 +10,16 @@ import DetailsDialog from "./DetailsDialog";
 
 
 const FoodCard = (props) => {
-  const { name, time, grade } = props.food;
+  const { title, time, rating , timeRateIndex} = props.food;
 
-  const {a, b, k} = {
-    arvosanaskaalaus: 1,
-    aikaskaalaus: 1,
-    eksponentti: 2
-  }
+  const kertoimet = [1,1,2]
 
 
-  const HYVYYS_INDEX = (a*grade**k)/(b*time)
+  const HYVYYS_INDEX = (kertoimet[0]*rating**kertoimet[2])/(kertoimet[1]*time)
 
   const UserRating = () => {
     return (
-      <Rating name="read-only" value={grade} readOnly />
+      <Rating name="read-only" value={rating} readOnly />
     );
   };
 
@@ -42,12 +36,12 @@ const FoodCard = (props) => {
           color: 'white'
         }}
       >
-        <h2>{name}</h2>
+        <h2>{title}</h2>
         <section>{time} minutes</section>
 
         <UserRating />
-        <p><b>Index: {HYVYYS_INDEX}</b></p>
-        <DetailsDialog food={props.food}/>
+        <p><b>Index: {timeRateIndex}</b></p>
+        {/*<DetailsDialog food={props.food}/>*/}
       </Box>
       </>
   );
