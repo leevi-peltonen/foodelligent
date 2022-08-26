@@ -2,6 +2,7 @@ const recipesRouter = require('express').Router()
 const Recipe = require('../models/recipe')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
+const { timeRateIndexCalculator } = require('../utils/helpers')
 
 // Get all recipes
 recipesRouter.get('/', async (req, res) => {
@@ -44,7 +45,7 @@ recipesRouter.post('/', async (req, res) => {
         steps: body.steps,
         rating: body.rating,
         time: body.time,
-        timeRateIndex: body.timeRateIndex
+        timeRateIndex: timeRateIndexCalculator(body.time, body.rating)
     })
 
     const savedRecipe = await recipe.save()
