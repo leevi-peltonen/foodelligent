@@ -54,4 +54,28 @@ recipesRouter.post('/', async (req, res) => {
     res.json(savedRecipe.toJSON())
 })
 
+// Update recipe by ID
+recipesRouter.patch('/:id', (req, res, next) => {
+    const body = req.body;
+    const recipe = {
+        title: body.title,
+        ingredients: body.ingredients,
+        steps: body.steps,
+        rating: body.rating,
+        time: body.time,
+        timeRateIndex: body.timeRateIndex
+    }
+    Recipe.findByIdAndUpdate(req.params.id, recipe, { new: true })
+        .then(updatedRecipe => {
+            res.status(200).json(updatedRecipe.toJSON())
+        })
+        .catch(error => { next(error) })
+})
+
+// Delete recipe by ID
+recipesRouter.delete('/:id', async (req, res) => {
+    await Recipe.findByIdAndDelete(req.params.id);
+    res.status(204).end();
+})
+
 module.exports = recipesRouter
