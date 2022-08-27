@@ -5,7 +5,6 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
-  TextField,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
@@ -37,7 +36,7 @@ const RegisterForm = (props) => {
 
   const handleRegister = async () => {
     const result = await register({ username: values.username, password: values.password });
-    setMessage(`Terveisiä serveriltä, ${result.username}`)
+    setMessage(result.data)
     setTimeout(() => {
       setMessage(null)
     }, 5000)

@@ -8,13 +8,13 @@ import Stack from "@mui/material/Stack";
 import Rating from "@mui/material/Rating";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-
 import { useState } from 'react';
 import { useUser } from '../../context/UserContext';
+import { addRecipe } from '../../services/recipes';
+import { useRecipe } from '../../context/RecipeContext';
 
-const FoodDialog = () => {
-  const {user, setUser} = useUser()
-
+const FoodDialog = (props) => {
+  const {user} = useUser()
   const DEFAULT_STATES = {
     open: false,
     name: '',
@@ -25,8 +25,7 @@ const FoodDialog = () => {
     arr: []
   }
   
-  const newFoodItem = {}
-
+  let newFoodItem = {}
 
   const setDefaultStates = () => {
     setOpen(DEFAULT_STATES.open)
@@ -47,6 +46,8 @@ const FoodDialog = () => {
   const [instructionStepArray, setInstructionStepArray ] = useState([])
   const [ingridient, setIngridient] = useState('')
   const [ingridientArray, setIngridientArray ] = useState([])
+  const {setRecipes} = useRecipe()
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,18 +59,17 @@ const FoodDialog = () => {
   };
 
   const handleSubmit = () => {
-    newFoodItem.title = name
-    newFoodItem.rating = rating
-    newFoodItem.time = time
-    newFoodItem.steps = instructionStepArray
-    newFoodItem.ingredients = ingridientArray
-    
 
-    
-
-
-    setOpen(false)
-    setDefaultStates()
+    newFoodItem = {
+      title: name,
+      rating: rating,
+      time: time,
+      steps: instructionStepArray,
+      ingredients: ingridientArray,
+    }
+    const result = addRecipe(newFoodItem, user.token)//send newFoodItem to database
+    console.log('Result from addRecipe' + result)
+    setRecipes(prev => [...prev, result])
     }
 
     const handleAddStep = () => {

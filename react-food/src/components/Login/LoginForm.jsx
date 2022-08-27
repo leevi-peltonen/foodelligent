@@ -6,25 +6,36 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { TextField } from "@mui/material";
-
+import { useUser } from "../../context/UserContext";
+import { login } from "../../services/login";
+import { useNavigate } from "react-router-dom";
+import { storageSave } from "../../utils/storage";
+import {Button} from "@mui/material";
 const LoginForm = () => {
+  const { setUser } = useUser();
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(values.password)
+      const user = await login({ username: values.username, password: values.password })
+      setUser(user)
+      navigate('recipes')
   };
 
 
+
+
   const [values, setValues] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
     showPassword: false,
   });
 
-  const handleChange =
-    (prop) => (event) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
 
   const handleClickShowPassword = () => {
     setValues({
@@ -37,17 +48,10 @@ const LoginForm = () => {
     event.preventDefault();
   };
 
-  
-
-
-
-
-
-
   return (
     <form onSubmit={handleSubmit}>
-
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+        <FormControl>
         <InputLabel htmlFor="outlined-adornment-username">Username</InputLabel>
         <OutlinedInput
           id="outlined-adornment-username"
@@ -55,32 +59,33 @@ const LoginForm = () => {
           onChange={handleChange("username")}
           type="text"
         ></OutlinedInput>
+        </FormControl>
+        
+        <FormControl>
+        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={values.showPassword ? "text" : "password"}
+          value={values.password}
+          onChange={handleChange("password")}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Password"
+        />
+        </FormControl>
+        <Button variant="contained" type="submit">Log in</Button>
       </FormControl>
-
-
-      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-      <OutlinedInput
-        id="outlined-adornment-password"
-        type={values.showPassword ? 'text' : 'password'}
-        value={values.password}
-        onChange={handleChange('password')}
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              edge="end"
-            >
-              {values.showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        }
-        label="Password"
-      />
-    </FormControl>
-      <button type="submit">Log in</button>
+      
     </form>
   );
 };
