@@ -23,6 +23,9 @@ const Header = () => {
   }
 
   return (
+
+
+
     <header className="bg-blue-300 inline-flex w-full p-8 sticky top-0 z-50 text-white">
 
       <h1 className="font-bold m-6 text-xl ">Foodelligent</h1>

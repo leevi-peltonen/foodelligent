@@ -7,7 +7,3 @@ const MULTIPLIERS = {
 const timeRateIndexCalculator = (time, rate) =>
   (MULTIPLIERS.ratescalar * rate ** MULTIPLIERS.exponent) /
   (MULTIPLIERS.timescalar * time);
-
-  module.exports = {
-    timeRateIndexCalculator
-  }
