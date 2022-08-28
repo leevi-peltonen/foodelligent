@@ -18,17 +18,18 @@ const FoodCard = (props) => {
     event.preventDefault();
     if (window.confirm("Are you sure? \nThis can not be undone")) {
       deleteRecipe(id)
+      props.onDelete(id)
     }
   };
 
   return (
-    <div className="shadow m-8">
+    <div className="shadow m-10 p-10 w-auto bg-blue-300">
       <h2 className="font-bold">{title}</h2>
       <section>{time} minutes</section>
       <UserRating />
       <p>Index: {timeRateIndex}</p>
-      <Button onClick={handleDelete}>Delete</Button>
       <DetailsDialog food={props.food} />
+      <Button variant="contained" color="error" onClick={handleDelete}>Delete</Button>
     </div>
   );
 };

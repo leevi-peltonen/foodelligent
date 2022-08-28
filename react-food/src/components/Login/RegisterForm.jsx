@@ -46,8 +46,11 @@ const RegisterForm = (props) => {
   };
 
   return (
+    <>
+    <h2 className="text-4xl">Register</h2>
     <form>
-      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+      <FormControl sx={{ m: 1, width: "25ch" }}>
+      <FormControl sx={{ m: 1}}>
         <InputLabel htmlFor="outlined-adornment-username">Username</InputLabel>
         <OutlinedInput
           id="outlined-adornment-username"
@@ -57,7 +60,7 @@ const RegisterForm = (props) => {
         ></OutlinedInput>
       </FormControl>
 
-      <FormControl>
+      <FormControl sx={{ m: 1}}>
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
@@ -78,9 +81,11 @@ const RegisterForm = (props) => {
           }
           label="Password"
         />
-        <Button onClick={handleRegister}>Sign up</Button>
+        <Button variant="contained" onClick={handleRegister}>Sign up</Button>
+      </FormControl>
       </FormControl>
     </form>
+    </>
   );
 };
 

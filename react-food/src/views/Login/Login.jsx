@@ -29,6 +29,7 @@ const Login = () => {
     <Container maxWidth="sm">
       {!onRegister ? <LoginForm /> : <RegisterForm  signUpAction={displayRegister} />}
       {!onRegister && <Button onClick={displayRegister}>Don't have an account? Sign up.</Button>}
+      {onRegister && <Button onClick={displayRegister}>Go back.</Button>}
     </Container>
   )
 }

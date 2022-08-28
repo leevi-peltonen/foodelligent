@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { useUser } from '../../context/UserContext';
 import { addRecipe } from '../../services/recipes';
 import { useRecipe } from '../../context/RecipeContext';
+import timeRateIndex from '../../utils/timeRateIndex';
 
 const FoodDialog = (props) => {
   const {user} = useUser()
@@ -66,10 +67,12 @@ const FoodDialog = (props) => {
       time: time,
       steps: instructionStepArray,
       ingredients: ingridientArray,
+      timeRateIndex: timeRateIndex(time, rating)
     }
     const result = addRecipe(newFoodItem, user.token)//send newFoodItem to database
     console.log('Result from addRecipe' + result)
-    setRecipes(prev => [...prev, result])
+    props.onAdd(newFoodItem)
+    handleClose()
     }
 
     const handleAddStep = () => {

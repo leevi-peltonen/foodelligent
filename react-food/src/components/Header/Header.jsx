@@ -19,16 +19,14 @@ const Header = () => {
     navigate('')
   }
   const LogoutBtn = () => {
-    return <Button variant="contained" onClick={handleLogout}>Log out</Button>
+    return <Button variant="contained" color="error" onClick={handleLogout}>Log out</Button>
   }
 
   return (
 
-
-
     <header className="bg-blue-300 inline-flex w-full p-8 sticky top-0 z-50 text-white">
 
-      <h1 className="font-bold m-6 text-xl ">Foodelligent</h1>
+      <h1 className="font-bold m-4 text-6xl ">Foodelligent</h1>
       <section className="fixed top-10 right-96">
       {user && <UserName/>}
       {user && <LogoutBtn/>}

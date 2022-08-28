@@ -49,9 +49,12 @@ const LoginForm = () => {
   };
 
   return (
+    <>
+    <h2 className="text-4xl">Login</h2>
     <form onSubmit={handleSubmit}>
-      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-        <FormControl>
+      <FormControl sx={{ m: 1, width: "25ch" }}>
+      
+        <FormControl sx={{ m: 1}}>
         <InputLabel htmlFor="outlined-adornment-username">Username</InputLabel>
         <OutlinedInput
           id="outlined-adornment-username"
@@ -61,7 +64,7 @@ const LoginForm = () => {
         ></OutlinedInput>
         </FormControl>
         
-        <FormControl>
+        <FormControl sx={{ m: 1}}>
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
@@ -82,11 +85,13 @@ const LoginForm = () => {
           }
           label="Password"
         />
+                <Button variant="contained" color="success" type="submit">Log in</Button>
         </FormControl>
-        <Button variant="contained" type="submit">Log in</Button>
+
       </FormControl>
       
     </form>
+    </>
   );
 };
 

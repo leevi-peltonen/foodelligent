@@ -34,6 +34,8 @@ export const addRecipe = (recipe, token) => {
 
 export const deleteRecipe = (id) => {
   axios.delete(`${url}/${id}`)
-  .then(response => console.log(response))
+  .then(res=> {
+    console.log(res)
+  })
   .catch(error => console.log(error))
 }
