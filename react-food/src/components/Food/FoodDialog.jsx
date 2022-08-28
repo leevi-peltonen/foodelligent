@@ -8,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import Rating from "@mui/material/Rating";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { useState } from 'react';
 import { useUser } from '../../context/UserContext';
 import { addRecipe } from '../../services/recipes';
@@ -75,16 +76,22 @@ const FoodDialog = (props) => {
     handleClose()
     }
 
+
+
     const handleAddStep = () => {
       setInstructionStepArray((prev) => [...prev, instructionStep])
-
+    }
+    const handleRemoveStep = () => {
+      setInstructionStepArray((prev) => prev.filter((item,index) => index!==prev.length-1))
     }
 
     const handleAddIngridient = () => {
       setIngridientArray((prev) => [...prev, ingridient])
     }
 
-
+    const handleRemoveIngredient = () => {
+      setIngridientArray((prev) => prev.filter((item,index) => index!==prev.length-1))
+    }
 
   return (
     <div>
@@ -99,22 +106,34 @@ const FoodDialog = (props) => {
             
             <TextField value={time} onChange={e => setTime(e.target.value)} id="standard-basic" label="Time"  variant="standard" type="number"></TextField>
 
-            {instructionStepArray.map(item => <li>{item}</li>)}
-            
-
-            <TextField value={instructionStep} onChange={e => setInstructionStep(e.target.value)} id="standard-basic" label="Instructions step by step" variant="standard" type="text"></TextField>
-            <Fab onClick={handleAddStep} color="primary" size='small' aria-label="add">
-             <AddIcon />
-            </Fab>
-
+            <section>
+            <ul className="list-none">
             {ingridientArray.map(item => <li>{item}</li>)}
-            
+            </ul>
 
             <TextField value={ingridient} onChange={e => setIngridient(e.target.value)} id="standard-basic" label="Ingridients" variant="standard" type="text"></TextField>
             <Fab onClick={handleAddIngridient} color="primary" size='small' aria-label="add">
              <AddIcon />
             </Fab>
 
+            <Fab onClick={handleRemoveIngredient} color="secondary" size='small' aria-label="remove">
+             <RemoveCircleIcon />
+            </Fab>
+            </section>
+            <section>
+            <ul className="list-none">
+            {instructionStepArray.length > 0 && instructionStepArray.map(item => <li>{item}</li>)}
+            </ul>
+
+            <TextField value={instructionStep} onChange={e => setInstructionStep(e.target.value)} id="standard-basic" label="Instructions step by step" variant="standard" type="text"></TextField>
+            <Fab onClick={handleAddStep} color="primary" size='small' aria-label="add">
+             <AddIcon />
+            </Fab>
+
+            <Fab onClick={handleRemoveStep} color="secondary" size='small' aria-label="remove">
+             <RemoveCircleIcon />
+            </Fab>
+            </section>
 
             <Rating value={rating} onChange={(e, newValue) => setRating(newValue)} />
           </Stack>
