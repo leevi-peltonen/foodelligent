@@ -23,13 +23,13 @@ const FoodCard = (props) => {
   };
 
   return (
-    <div className="shadow m-10 p-10 w-auto bg-blue-300">
+    <div className="relative shadow m-10 p-10 w-80 rounded bg-blue-300">
       <h2 className="font-bold">{title}</h2>
       <section>{time} minutes</section>
       <UserRating />
       <p>Index: {timeRateIndex}</p>
       <DetailsDialog food={props.food} />
-      <Button variant="contained" color="error" onClick={handleDelete}>Delete</Button>
+      <Button className="absolute -right-16" variant="contained" color="error" onClick={handleDelete}>Delete</Button>
     </div>
   );
 };
